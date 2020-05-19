@@ -24,9 +24,9 @@ void render() {
 
   textfield(GEN_ID,50,250,sometext);
 
-  int slidervalue = bgcolor & 0xff;
+  int slidervalue = ((bgcolor >> 16) & 0xff);
   if (slider(GEN_ID, 500, 40, 255, &slidervalue)) {
-    bgcolor = (bgcolor & 0xffff00) | slidervalue;
+    bgcolor = (bgcolor & 0x00ffff) | (slidervalue << 16);
   }
 
   slidervalue = ((bgcolor >> 8) & 0xff);
@@ -34,10 +34,11 @@ void render() {
     bgcolor = (bgcolor & 0xff00ff) | (slidervalue << 8);
   }
 
-  slidervalue = ((bgcolor >> 16) & 0xff);
+  slidervalue = bgcolor & 0xff;
   if (slider(GEN_ID, 600, 40, 255, &slidervalue)) {
-    bgcolor = (bgcolor & 0x00ffff) | (slidervalue << 16);
+    bgcolor = (bgcolor & 0xffff00) | slidervalue;
   }
+
 
 
   imgui_finish();
