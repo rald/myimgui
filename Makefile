@@ -1,5 +1,5 @@
-game: game.c
-	gcc game.c -o game -L. -limgui -lSDL
+game: game.c imgui.h
+	gcc game.c -o game -L. -lSDL
 
 .PHONY: clean
 

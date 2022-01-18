@@ -1,3 +1,4 @@
+#define IMGUI_IMPLEMENTATION
 #include "imgui.h"
 
 
@@ -54,7 +55,8 @@ void render() {
 
 
 // Entry point
-int main(int argc, char *argv[]) {
+int main(void) {
+
   // Initialize SDL's subsystems - in this case, only video.
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     fprintf(stderr, "Unable to init SDL: %s\n", SDL_GetError());
@@ -122,13 +124,15 @@ int main(int argc, char *argv[]) {
 	        switch (event.key.keysym.sym) {
 	        	case SDLK_ESCAPE:
 	          // If escape is pressed, return (and thus, quit)
-	          return 0;
+	        		return 0;
+				default: break;
 	        }
 	        break;
 	      case SDL_QUIT:
 	        return(0);
+		  default: break;
 	    }
-		}
+	 }
   }
   return 0;
 }
